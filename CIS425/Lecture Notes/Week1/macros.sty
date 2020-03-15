@@ -1,0 +1,58 @@
+\newcount\examplepenalty
+\examplepenalty=0
+\def\example{%
+  \def\{{\relax\char`\{}%
+  \def\}{\relax\char`\}}%
+  \let\temp=\dospecials\let\dospecials=\relax
+  \let\@@@par=\@@par
+  \def\@@par{\@@@par\penalty\examplepenalty}%
+  \@verbatim
+  \def\hinge{\penalty0\relax}%
+  \let\dospecials=\temp
+  \def\i##1{{\it ##1}}%
+  \frenchspacing\@vobeyspaces}
+\def\endexample{\penalty0\endtrivlist}
+
+%%% examplebox is to verbatimbox as example is to verbatim.
+\def\examplealign{%
+  \def\{{\relax\char`\{}%
+  \def\}{\relax\char`\}}%
+  \let\par=\cr\obeylines\tt\catcode``=13\@noligs
+  \frenchspacing\@vobeyspaces
+  \def\i##1{{\it ##1}}%
+  \halign\bgroup##\hfil}
+\def\endexamplealign{\egroup}
+\def\examplebox{\errmessage{The examplebox environment has been changed; see
+                            Ken Traub}}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{mexample}[theorem]{Example}
+\renewenvironment{example}{\begin{mexample}\rm}{\end{mexample}}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{mremark}[theorem]{Remark}
+\newenvironment{remark}{\begin{mremark}\rm}{\end{mremark}}
+
+
+% ``TIGHTLIST'' ENVIRONMENT (no para space between items, small indent)
+\newenvironment{tightlist}%
+{\begin{list}{$\bullet$}{%
+    \setlength{\topsep}{0in}
+    \setlength{\partopsep}{0in}
+    \setlength{\itemsep}{0in}
+    \setlength{\parsep}{0in}
+    \setlength{\leftmargin}{1.5em}
+    \setlength{\rightmargin}{0in}
+    \setlength{\itemindent}{0in}
+}
+}%
+{\end{list}
+}
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+
